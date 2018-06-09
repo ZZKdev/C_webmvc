@@ -3,10 +3,18 @@
 
 enum method{GET, POST};
 
+typedef struct Parameter{
+	char* key;
+	char* value;
+	struct Parameter* next;
+}Parameter;
+
 typedef struct Request{
 	char* requsetHeader;
 	char* requestBody;
-	
+	enum method;
+	short parametersParsed;
+	Parameter* parmeters;
 };
 
 typedef struct Response{
@@ -19,6 +27,7 @@ typedef struct Response{
 Request* init_Request(char* string);
 char* getPath(Request request);
 enum method getMethod(Request request);
+void parseParaemters(Request request);
 char* getParameter(Request request);
 
 /*Response function*/
