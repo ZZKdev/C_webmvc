@@ -1,0 +1,9 @@
+add: key:a; value:2
+add two
+temp:0xc37040
+temp->next:0xc38070
+add: key:b; value:3
+method:GET
+path:/
+key:a.value:2
+key:b.value:3
