@@ -87,6 +87,12 @@ Dict* new_parameter(char* string)
         }
         string++;
     }
+    if(state == 1)
+    {
+        uri_decode(key);
+        uri_decode(value);
+        Dict_add(&dict, key, value);
+    }
     return dict;
 }
 
