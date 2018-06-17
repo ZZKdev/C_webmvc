@@ -30,7 +30,7 @@ char* getMethod(char* string)
     int i;
     for(i = 0; i < length; i++)
     {
-        if(strcasecmp(string, method[i]) == 0)
+        if(stricmp(string, method[i]) == 0)
         {
             return method[i];
         }
