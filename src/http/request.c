@@ -1,4 +1,4 @@
-#include "request.h"
+﻿#include "request.h"
 #include "types.h"
 #include "request_parse.h"
 #include <stdlib.h>
@@ -48,6 +48,7 @@ void Dict_add(Dict** dict, char *key, char *value)
     temp->key = key;
     temp->value = value;
     temp->next = NULL;
+	printf("add key:%s\tvalue:%s\n", key, value);
 }
 
 Dict* new_parameter(char* string)
@@ -143,6 +144,19 @@ Request* init_Request(DataBuffer* buffer)
         start[readIndex++] = '\0';
         request->parmeters = new_parameter(start);
     }
-
+    /****parse the header************/
+    while(*(start = readLine(buffer)) != '\0')
+    {
+        char *key = start, *value = NULL;
+        while(*start != ':')
+        {
+            start++;
+        }
+        *(start++) = '\0';
+        while(!isSpace(*start)) start++;
+        *(start++) = '\0';
+        value = start;
+        Dict_add(&(request->header), key, value);
+    }
     return request;
 }
